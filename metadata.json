@@ -1,0 +1,31 @@
+{
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [ "6", "7" ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.3.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "name": "pltraining-showoff",
+  "version": "0.0.1",
+  "author": "pltraining",
+  "summary": "Manage Showoff",
+  "license": "Apache License, Version 2.0",
+  "source": "https://github.com/puppetlabs/pltraining-showoff",
+  "project_page": "https://github.com/puppetlabs/pltraining-showoff",
+  "issues_url": "https://tickets.puppetlabs.com/browse/TRAINTECH",
+  "description": "Manage the Showoff presentation server",
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 0.1.6"  },
+    { "name": "maestrodev/rvm",    "version_requirement": ">= 1.12.1" }
+  ]
+}
