@@ -1,0 +1,23 @@
+<%
+  options = ''
+  options << " -f #{@file}" if @file
+  options << " -h #{@host}" if @host
+  options << " -p #{@port}" if @port
+  options << " -x"          if @allow_exec
+  options << " --nocache"   if @nocache
+
+  options << " -s" if @ssl
+  options << " --ssl_certificate #{@cert}" if @cert
+  options << " --ssl_private_key #{@key}"  if @key
+-%>
+[Unit]
+Description=Showoff (<%= @title %>)
+After=network.target
+
+[Service]
+WorkingDirectory=<%= @path %>
+ExecStart=/usr/local/bin/showoff serve<%= @options %>
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
