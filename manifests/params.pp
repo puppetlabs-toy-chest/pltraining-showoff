@@ -1,11 +1,10 @@
 class showoff::params {
   $version = present
   $root    = '/var/cache/showoff'
-  $user    = 'showoff'
-  $group   = 'showoff'
 
-  $manage_user  = true
-  $manage_group = true
+  $manage_user = true
+  $user        = 'showoff'
+  $group       = 'nobody'
 
   # generate RVM wrappers to start with a working Ruby environment
   if $os['family'] == 'RedHat' {
@@ -22,6 +21,7 @@ class showoff::params {
     fail("Sorry, we don't support ${os['family']} yet!")
   }
 
+  $enabled    = true
   $allow_exec = false
   $file       = undef
   $nocache    = undef

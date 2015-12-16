@@ -16,8 +16,11 @@ After=network.target
 
 [Service]
 WorkingDirectory=<%= @path %>
-ExecStart=/usr/local/bin/showoff serve<%= @options %>
+ExecStart=/usr/local/bin/showoff serve<%= options %>
 Restart=on-failure
+KillSignal=SIGINT
+User=<%= @user %>
+Group=<%= @group %>
 
 [Install]
 WantedBy=multi-user.target

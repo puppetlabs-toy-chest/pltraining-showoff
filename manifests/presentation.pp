@@ -1,4 +1,8 @@
 define showoff::presentation (
+  $path       = "${showoff::root}/${title}",
+  $user       = $showoff::user,
+  $group      = $showoff::group,
+  $enabled    = $showoff::enabled,
   $allow_exec = $showoff::params::allow_exec,
   $file       = $showoff::params::file,
   $nocache    = $showoff::params::nocache,
@@ -7,35 +11,16 @@ define showoff::presentation (
   $ssl        = $showoff::params::ssl,
   $cert       = $showoff::params::cert,
   $key        = $showoff::params::key,
-  $repository = undef,
 ) {
-  File {
-    owner => 'root',
-    group => 'root',
-    mode  => '0644',
-  }
-  $path = "${showoff::root}/${title}"
-
-  if $repository {
-    vcsrepo { $path:
-      ensure   => present,
-      owner    => $showoff::owner,
-      group    => $showoff::group,
-      provider => git,
-      source   => $repository,
-    }
-  }
-
   case $showoff::init {
     'systemd': {
-      file { "/etc/systemd/system/multi-user.target.wants/showoff-${title}.service":
+      file { "/usr/lib/systemd/system/showoff-${title}.service":
         ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
         content => template('showoff/showoff.service.erb'),
-      }
-
-      service { "showoff-${title}":
-        ensure => running,
-        enable => true,
+        before  => Service["showoff-${title}"],
       }
     }
     'sysv': {
@@ -43,6 +28,18 @@ define showoff::presentation (
     }
     default: {
       fail("how'd we get here?")
+    }
+  }
+
+  if $enabled {
+    service { "showoff-${title}":
+      ensure => running,
+      enable => true,
+    }
+  } else {
+    service { "showoff-${title}":
+      ensure => stopped,
+      enable => false,
     }
   }
 }

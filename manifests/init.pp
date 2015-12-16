@@ -1,11 +1,13 @@
 class showoff (
   $version = $showoff::params::version,
   $use_rvm = $showoff::params::use_rvm,
-  $user    = $showoff::params::user,
-  $group   = $showoff::params::group,
 
-  $manage_user  = $showoff::params::manage_user,
-  $manage_group = $showoff::params::manage_group,
+  $enabled = $showoff::params::enabled,
+
+  $manage_user = $showoff::params::manage_user,
+  $user        = $showoff::params::user,
+  $group       = $showoff::params::group,
+  $sshkey      = undef,
 
 ) inherits showoff::params {
 
