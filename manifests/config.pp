@@ -1,21 +1,27 @@
 class showoff::config {
   assert_private('This class should not be called directly')
 
-  if $showoff::user and $showoff::manage_user {
-    user { $showoff::user:
-      ensure => present,
-    }
+  File {
+    owner => $showoff::user,
+    group => $showoff::group,
+    mode  => '0644',
+
   }
-  if $showoff::group and $showoff::manage_group {
-    group { $showoff::group:
-      ensure => present,
+
+  if $showoff::manage_user {
+    user { $showoff::user:
+      ensure     => present,
+      gid        => $showoff::group,
+      managehome => true,
+    }
+
+    file { "/home/${showoff::user}/.ssh":
+      ensure => directory,
     }
   }
 
   file { $showoff::root:
     ensure => directory,
-    owner  => $showoff::user,
-    group  => $showoff::group,
   }
 
 }
