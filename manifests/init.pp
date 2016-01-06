@@ -7,8 +7,6 @@ class showoff (
   $manage_user = $showoff::params::manage_user,
   $user        = $showoff::params::user,
   $group       = $showoff::params::group,
-  $sshkey      = undef,
-
 ) inherits showoff::params {
 
   package { 'showoff':

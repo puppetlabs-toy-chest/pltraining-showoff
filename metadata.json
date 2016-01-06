@@ -26,7 +26,6 @@
   "description": "Manage the Showoff presentation server",
   "dependencies": [
     { "name": "puppetlabs/stdlib",  "version_requirement": ">= 0.1.6"  },
-    { "name": "puppetlabs/vcsrepo", "version_requirement": ">= 1.0.0"  },
     { "name": "maestrodev/rvm",     "version_requirement": ">= 1.12.1" }
   ]
 }

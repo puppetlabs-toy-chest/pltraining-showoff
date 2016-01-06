@@ -5,5 +5,6 @@ class showoff::rvm {
   # create gemset
   # create rvm wrapper
 
+  fail('This class is incomplete')
 }
 
