@@ -1,0 +1,11 @@
+fixtures:
+  symlinks:
+    showoff: "#{source_dir}"
+  repositories:
+  forge_modules:
+    stdlib:
+      repo: "puppetlabs/stdlib"
+      ref: "4.12.0"
+    rvm:
+      repo: "maestrodev/rvm"
+      ref: "1.12.1"
