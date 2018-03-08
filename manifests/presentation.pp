@@ -21,6 +21,11 @@ define showoff::presentation (
         mode    => '0644',
         content => template('showoff/showoff.service.erb'),
         before  => Service["showoff-${title}"],
+        notify  => Exec['systemctl daemon-reload'],
+      }   
+      exec { 'systemctl daemon-reload':
+        path        => '/bin:/usr/bin',
+        refreshonly => true,
       }
     }
     'sysv': {
