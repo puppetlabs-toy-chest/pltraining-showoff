@@ -25,6 +25,7 @@ define showoff::presentation (
       }   
       exec { 'systemctl daemon-reload':
         path        => '/bin:/usr/bin',
+        notify      => Service["showoff-${title}"],
         refreshonly => true,
       }
     }
